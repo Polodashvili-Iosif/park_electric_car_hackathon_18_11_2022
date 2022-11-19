@@ -1,3 +1,4 @@
+import os
 from base64 import b64decode
 from pprint import pprint
 
@@ -5,14 +6,17 @@ import requests
 from twocaptcha import TwoCaptcha
 
 
-def get_car_data(vin: str) -> str:
+def get_car_data(vin: str) -> dict[str: str]:
     r = requests.get('https://check.gibdd.ru/captcha').json()
 
-    with open("captcha.png", "wb") as f:
+    file_name = 'captcha.png'
+    with open(file_name, "wb") as f:
         f.write(b64decode(r["base64jpg"]))
 
     solver = TwoCaptcha('82cec7e414bf1e0e02dba52d4fcadab1')
-    result = solver.normal('captcha.png')
+    result = solver.normal(file_name)
+
+    os.remove(file_name)
 
     headers = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -38,9 +42,9 @@ def get_car_data(vin: str) -> str:
     }
 
     response = requests.post('https://xn--b1afk4ade.xn--90adear.xn--p1ai/proxy/check/auto/history', headers=headers,
-                             data=data).json()['RequestResult']['vehicle']['model']
+                             data=data).json()['RequestResult']['vehicle']
     pprint(response)
 
 
 if __name__ == '__main__':
-    get_car_data('XTA210630Н1769147')
+    get_car_data('5YJ3E1EBXJF135746')

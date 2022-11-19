@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import UserRegisterForm
-# from ..expertises.models import CarInfo
+from .models import CarInfo, User, UserInfo
 
 
 def registration(request):
@@ -29,14 +29,21 @@ def login(request):
     return render(request, template)
 
 
-# def profile(request, pk):
-#     cars = CarInfo.objects.get(pk=pk)
-#     context = {
-#         'cars': cars,
-#     }
-#     template = 'users/profile.html'
-#     return render(request, template, context)
-
-# def registration(request):
-#     template = 'users/registration.html'
-#     return render(request, template)
+def profile(request, pk):
+    user = User.objects.get(pk=pk)
+    user_info = UserInfo.objects.get(pk=pk)
+    cars = CarInfo.objects.all()
+    if cars:
+        context = {
+            'user': user,
+            'user_info': user_info,
+            'cars': cars,
+        }
+    else:
+        context = {
+            'user': '',
+            'user_info': '',
+            'cars': '',
+        }
+    template = 'users/profile.html'
+    return render(request, template, context)

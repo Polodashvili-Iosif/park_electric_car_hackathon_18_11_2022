@@ -1,0 +1,6 @@
+{% load static %}
+<header class="header">
+    <h1 class="text_1">Добро пожаловать</h1>
+      <img class="pic" src="{% static 'img/3.svg' %}" alt=""  style="float:right">
+    <h2 class="text_2">Здравствуйте, {{ user_info.second_name }} {{ user_info.first_name }} {{ user_info.patronymic }}</h2>
+</header>
