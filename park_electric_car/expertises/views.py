@@ -1,6 +1,11 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
-# Create your views here.
+def signup(request):
+    template = 'expertises/signup.html'
+    return render(request, template)
 
 
+def registration(request):
+    template = 'expertises/registration.html'
+    return render(request, template)
