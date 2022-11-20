@@ -2,17 +2,22 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+
 User = get_user_model()
 
 
 class CarInfo(models.Model):
-    mark = models.CharField(max_length=30, verbose_name='Марка')
+    mark = models.CharField(max_length=30, verbose_name='Марка',)
     model = models.CharField(max_length=30, verbose_name='Модель')
-    engine_model = models.CharField(max_length=30, verbose_name='Номер двигателя')
-    chassis_number = models.CharField(max_length=30, verbose_name='Номер шасси')
     vin = models.CharField(max_length=17, verbose_name='VIN')
     state_number = models.CharField(max_length=8, verbose_name='Гос. номер')
-    release_year = models.IntegerField(verbose_name='Год выпуска')
+    year = models.IntegerField(verbose_name='Год выпуска')
+    category = models.CharField(max_length=3, verbose_name='Категория')
+    color = models.CharField(max_length=20, verbose_name='Цвет')
+    engine_number = models.CharField(max_length=30, verbose_name='Номер двигателя')
+    power_hp = models.CharField(max_length=20, verbose_name='Л.с.')
+    power_kwt = models.CharField(max_length=20, verbose_name='Кв./ч.')
+    type = models.CharField(max_length=20, verbose_name='Тип')
 
     class Meta:
         verbose_name = u'Автомобиль'

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Профиль
+{% endblock %}
+{% block css %}
+  <link href="{% static 'css/style3.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+{% include 'includes/header.html' %}
+
+    <h1>Новая машина</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Добавить">
+    </form>
+
+{% include 'includes/footer.html' %}
+{% endblock %}

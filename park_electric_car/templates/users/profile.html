@@ -7,12 +7,12 @@
   <link href="{% static 'css/style3.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-{% include 'includes/header_profile.html' %}
+{% include 'includes/header.html' %}
 
 {% if cars %}
     {% for car in cars %}
        <button type="button" class="btn btn-outline-dark rounded-pill" id="car">
-           <a href="#">{{ car.mark }} {{ car.model }}</a>
+           <a href="{% url 'car' car.pk %}">{{ car.mark }} {{ car.model }}</a>
         </button>
     {% endfor %}
 {% else %}
@@ -20,6 +20,9 @@
       Нет машин.
     </main>
 {% endif %}
+    <button type="button" class="btn btn-outline-dark rounded-pill" id="car">
+        <a href="{% url 'car_new' %}">Добавить автомобиль</a>
+    </button>
 <!--    <main class="main">-->
 <!--      <img class="pic44" src="{% static 'img/44.svg' %}" alt=""  style="float:left">-->
 <!--      <a href="#" style="&#45;&#45;clr:#ffff" class="signup44"><span>Model S</span><i></i></a>-->

@@ -1,23 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-  Профиль
+  {{ car.mark }} {{ car.model }}
 {% endblock %}
 {% block css %}
   <link href="{% static 'css/style3.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
+{% include 'includes/header.html' %}
 
 {% if car %}
-    <ol>
-        <li>Марка: {{ car.mark }}</li>
-        <li>Модель: {{ car.model }}</li>
-        <li>Модель двигателя: {{ car.engine_model }}</li>
-        <li>Номер шасси: {{ car.chassis_number }}</li>
-        <li>VIN: {{ car.vin }}</li>
-        <li>Гос. номер: {{ car.state_number }}</li>
-        <li>Год выпуска: {{ car.release_year }}</li>
-    </ol>
+    <ul class="list-group">
+        <li class="list-group-item">Марка: {{ car.mark }}</li>
+        <li class="list-group-item">Модель: {{ car.model }}</li>
+        <li class="list-group-item">VIN: {{ car.vin }}</li>
+        <li class="list-group-item">Гос. номер: {{ car.state_number }}</li>
+        <li class="list-group-item">Год выпуска: {{ car.year }}</li>
+        <li class="list-group-item">Категория: {{ car.category }}</li>
+        <li class="list-group-item">Цвет: {{ car.color }}</li>
+        <li class="list-group-item">Номер двигателя: {{ car.engine_number }}</li>
+        <li class="list-group-item">Лошадиные силы: {{ car.power_hp }}</li>
+        <li class="list-group-item">Киловат на час: {{ car.power_kwt }}</li>
+        <li class="list-group-item">Тип: {{ car.type }}</li>
+    </ul>
 {% endif %}
 
+{% include 'includes/footer.html' %}
 {% endblock %}

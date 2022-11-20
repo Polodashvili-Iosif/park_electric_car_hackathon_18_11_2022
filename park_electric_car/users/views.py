@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import RedirectView
+from django.views.generic.edit import CreateView
 
 from .forms import UserRegisterForm
 from .models import CarInfo, User, UserInfo
@@ -53,10 +54,8 @@ def profile(request, pk):
     return render(request, template, context)
 
 
-def car(request, pk1, pk2):
-    user = User.objects.get(pk=pk1)
-    user_infos = UserInfo.objects.filter(user=user)
-    car = CarInfo.objects.get(pk=pk2)
+def car(request, pk):
+    car = CarInfo.objects.get(pk=pk)
     print(car)
     if car:
         context = {
@@ -75,3 +74,13 @@ def login_redirect(request):
     pk = request
     print(type(pk))
     return reverse('profile', args=(pk,))
+
+
+def check(request):
+    template = 'users/check.html'
+    return render(request, template)
+
+class CarInfoCreateView(CreateView):
+    model = CarInfo
+    template_name = 'users/car_info_new.html'
+    fields = 'vin', 'state_number'

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{ car.mark }} {{ car.model }}
+{% endblock %}
+{% block css %}
+  <link href="{% static 'css/style3.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+{% include 'includes/header.html' %}
+
+    <div class="check-div">
+    <h1 style="margin-left: 19% "> Проверить ТС</h1>
+        <div class="input-group mb-3">
+          <input placeholder="Регистрационный номер ТС" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+
+          <button type="button" style="margin-bottom: 5%" class="btn btn-success">Проверить</button>
+            <a href="#"></a>
+          </button>
+            <button type="button" class="btn btn-success">Выгрузить данные</button>
+            <a href="#"></a>
+          </button>
+
+    </div>
+
+{% include 'includes/footer.html' %}
+{% endblock %}
