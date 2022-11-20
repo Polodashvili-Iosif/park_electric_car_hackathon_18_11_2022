@@ -27,7 +27,6 @@
     {% endblock %}
   </head>
   <body>
-<!--    {% include 'includes/header.html' %}-->
     {% if messages %}
       {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">
@@ -37,8 +36,5 @@
     {% endif %}
     {% block content %}
     {% endblock %}
-<!--    <footer>-->
-<!--      {% include 'includes/footer.html' %}-->
-<!--    </footer>-->
   </body>
 </html>

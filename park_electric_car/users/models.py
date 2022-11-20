@@ -48,8 +48,7 @@ class UserInfo(models.Model):
 
 
 class ElectricCar(models.Model):
-    mark = models.CharField(max_length=30, verbose_name='Марка')
-    model = models.CharField(max_length=30, verbose_name='Модель')
+    auto = models.CharField(max_length=60, verbose_name='Автомобиль')
 
     class Meta:
         verbose_name = u'Электрический автомобиль'

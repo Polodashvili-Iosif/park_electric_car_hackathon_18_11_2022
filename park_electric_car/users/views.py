@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.views.generic import RedirectView
 
 from .forms import UserRegisterForm
 from .models import CarInfo, User, UserInfo
@@ -31,8 +33,10 @@ def login(request):
 
 def profile(request, pk):
     user = User.objects.get(pk=pk)
-    user_info = UserInfo.objects.get(pk=pk)
-    cars = CarInfo.objects.all()
+    user_infos = UserInfo.objects.filter(user=user)
+    cars = []
+    for user_info in user_infos:
+        cars += CarInfo.objects.filter(userinfo=user_info)
     if cars:
         context = {
             'user': user,
@@ -47,3 +51,27 @@ def profile(request, pk):
         }
     template = 'users/profile.html'
     return render(request, template, context)
+
+
+def car(request, pk1, pk2):
+    user = User.objects.get(pk=pk1)
+    user_infos = UserInfo.objects.filter(user=user)
+    car = CarInfo.objects.get(pk=pk2)
+    print(car)
+    if car:
+        context = {
+            'car': car,
+        }
+    else:
+        context = {
+            'car': '',
+        }
+    template = 'users/car.html'
+    print(context)
+    return render(request, template, context)
+
+
+def login_redirect(request):
+    pk = request
+    print(type(pk))
+    return reverse('profile', args=(pk,))

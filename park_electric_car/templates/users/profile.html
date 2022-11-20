@@ -8,12 +8,12 @@
 {% endblock %}
 {% block content %}
 {% include 'includes/header_profile.html' %}
-{{cars|length}}
+
 {% if cars %}
     {% for car in cars %}
-        <main class="main">
-          <a href="#" style="--clr:#ffff" class="signup44"><span>{{ car.mark }} {{ car.model }}</span><i></i></a>
-        </main>
+       <button type="button" class="btn btn-outline-dark rounded-pill" id="car">
+           <a href="#">{{ car.mark }} {{ car.model }}</a>
+        </button>
     {% endfor %}
 {% else %}
     <main class="main">

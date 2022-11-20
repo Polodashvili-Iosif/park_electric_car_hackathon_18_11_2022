@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Профиль
+{% endblock %}
+{% block css %}
+  <link href="{% static 'css/style3.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+{% if car %}
+    <ol>
+        <li>Марка: {{ car.mark }}</li>
+        <li>Модель: {{ car.model }}</li>
+        <li>Модель двигателя: {{ car.engine_model }}</li>
+        <li>Номер шасси: {{ car.chassis_number }}</li>
+        <li>VIN: {{ car.vin }}</li>
+        <li>Гос. номер: {{ car.state_number }}</li>
+        <li>Год выпуска: {{ car.release_year }}</li>
+    </ol>
+{% endif %}
+
+{% endblock %}
