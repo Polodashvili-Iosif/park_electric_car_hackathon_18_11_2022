@@ -2,7 +2,17 @@ html,
 body {
   height: 100%;
 }
-
+.wrapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 *
 {
@@ -225,7 +235,7 @@ margin-top: 300px;
 .left_footer {
   align-self: flex-start;
   height: 110px;
-  width: 125px;
+  width: 33%;
   text-align: center;
   align-items: center;
 }
@@ -245,7 +255,7 @@ margin-top: 300px;
 .middle_footer {
   align-self: center;
   height: 110px;
-  width: 125px;
+  width: 33%;
   text-align: center;
   align-items: center;
 }
@@ -261,8 +271,7 @@ margin-top: 300px;
 .right_footer {
   align-self: flex-end;
   height: 110px;
-  width: 125px;
-  margin-left: 10px;
+  width: 33%;
   text-align: center;
   align-items: center;
   align-content: center;

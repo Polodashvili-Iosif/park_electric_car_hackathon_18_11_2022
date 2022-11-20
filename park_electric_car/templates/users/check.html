@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block title %}
-  {{ car.mark }} {{ car.model }}
+  Проверка
 {% endblock %}
 {% block css %}
   <link href="{% static 'css/style3.css' %}" rel="stylesheet">
@@ -11,17 +12,28 @@
 
     <div class="check-div">
     <h1 style="margin-left: 19% "> Проверить ТС</h1>
-        <div class="input-group mb-3">
-          <input placeholder="Регистрационный номер ТС" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="Submit" name="submit" value="Проверить" placeholder="VIN" type="button" style="margin-bottom: 5%; width: 330px" class="btn btn-success"/>
+        </form>
+
+        <button type="button" class="btn btn-success">Выгрузить данные</button>
+            <a href="#"></a>
+          </button>
+
+        {% if submitbutton == "Submit" %}
+            <div style="margin-inline: 10%">
+                <p>Марка и(или) модель: {{ model }}</p>
+                <p>Год выпуска: {{ year }}</p>
+                <p>Идентификационный номер (VIN): {{ vin }}</p>
+                <p>Номер кузова (кабины): {{ bodyNumber }}</p>
+                <p>Цвет кузова (кабины): {{ color }}</p>
+                <p>Номер двигателя: {{ engineNumber }}</p>
+                <p>Рабочий объем (см³): {{ engineVolume }}</p>
+                <p>Мощность (кВт/л.с.): {{ powerKwt }}/{{ powerHp }}</p>
             </div>
-
-          <button type="button" style="margin-bottom: 5%" class="btn btn-success">Проверить</button>
-            <a href="#"></a>
-          </button>
-            <button type="button" class="btn btn-success">Выгрузить данные</button>
-            <a href="#"></a>
-          </button>
-
+        {% endif %}
     </div>
 
 {% include 'includes/footer.html' %}

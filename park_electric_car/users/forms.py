@@ -16,3 +16,7 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class VINForm(forms.Form):
+    vin = forms.CharField(max_length=30)

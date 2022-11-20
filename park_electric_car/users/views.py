@@ -5,8 +5,9 @@ from django.urls import reverse
 from django.views.generic import RedirectView
 from django.views.generic.edit import CreateView
 
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, VINForm
 from .models import CarInfo, User, UserInfo
+from .parser import get_car_data
 
 
 def registration(request):
@@ -77,8 +78,31 @@ def login_redirect(request):
 
 
 def check(request):
+    submitbutton = request.POST.get("submit")
+
+    vin = ''
+
     template = 'users/check.html'
-    return render(request, template)
+    form = VINForm(request.POST or None)
+    if form.is_valid():
+        vin = form.cleaned_data.get("vin")
+
+    d = get_car_data(vin)
+    if d:
+        context = {
+            'form': form,
+            'submitbutton': submitbutton,
+            **get_car_data(vin),
+        }
+    else:
+        context = {
+            'form': form,
+            'submitbutton': submitbutton,
+        }
+    print(context)
+
+    return render(request, template, context)
+
 
 class CarInfoCreateView(CreateView):
     model = CarInfo

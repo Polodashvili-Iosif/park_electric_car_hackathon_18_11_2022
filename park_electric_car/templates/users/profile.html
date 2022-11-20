@@ -20,9 +20,15 @@
       Нет машин.
     </main>
 {% endif %}
-    <button type="button" class="btn btn-outline-dark rounded-pill" id="car">
-        <a href="{% url 'car_new' %}">Добавить автомобиль</a>
-    </button>
+    <div style="margin-inline: 33%">
+        <a href="{% url 'car_new' %}"> <img src="{% static 'img/Plus.png' %}" width="130"> </a>
+    </div>
+    
+    <div class="btn btn-dark">
+        <p>
+            <a href="{% url 'check' %}" style="color: white">Проверка автомобиля</a>
+        </p>
+    </div>
 <!--    <main class="main">-->
 <!--      <img class="pic44" src="{% static 'img/44.svg' %}" alt=""  style="float:left">-->
 <!--      <a href="#" style="&#45;&#45;clr:#ffff" class="signup44"><span>Model S</span><i></i></a>-->
